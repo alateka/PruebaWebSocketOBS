@@ -1,3 +1,5 @@
+mod config;
+
 use anyhow::{Ok, Result};
 use obws::Client;
 use std::env;
@@ -7,7 +9,7 @@ async fn main() -> Result<()> {
     let args: Vec<_> = env::args().collect();
 
     // Connect to the OBS instance through obs-websocket.
-    let client = Client::connect("192.168.11.111", 5333, Some("1DEGRoKGyj3p9KTH")).await?;
+    let client = Client::connect(config::IP, config::PORT, Some(config::PASSWORD)).await?;
     
     let value: &str = &args[1];
 
